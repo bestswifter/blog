@@ -15,11 +15,11 @@
 
 ##  iOS
 
-| 主题 | 文章 |
-|:-------:|:------|
-|Cocoa|[UIView生命周期详解](./articles/uiview-life-time.md)|
-|swift|[Swift 数组扩容原理](./articles/swift-array-append.md)|
-|逆向工程|[一个数字的魔法——破解 Mac 上 198 元的 Paw](./articles/crack-paw.md)|
+| 主题 | 文章 | 备注 |
+|:-------:|:------|:----:|
+|Cocoa|[UIView生命周期详解](./articles/uiview-life-time.md)||
+|swift|[Swift 数组扩容原理](./articles/swift-array-append.md)<br>[深入探究Swift数组背后的协议、方法、拓展](./articles/swift-array.md)|swift 的内容已经过时，不建议阅读|
+|逆向工程|[一个数字的魔法——破解 Mac 上 198 元的 Paw](./articles/crack-paw.md)||
 
 ## 🖥️ 操作系统
 
