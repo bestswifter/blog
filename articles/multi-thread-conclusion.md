@@ -273,7 +273,7 @@ execution block1 -- <NSThread: 0x7f89b1e17030>{number = 2, name = (null)}
 因此，`NSOperationQueue `和GCD中的队列有这样的对应关系：
 
 |               | NSOperationQueue               |     GCD    |
-| ------------- |:------------------:| :----------:| ---|
+| ------------- |:------------------:| :----------:|
 | 主队列         | NSOperationQueue.mainQueue                 | dispatch\_get_main\_queue()|
 | 串行队列       | 自建队列maxConcurrentOperationCount为1     | dispatch\_queue\_create("", DISPATCH\_QUEUE\_SERIAL) |
 | 并发队列       | 自建队列maxConcurrentOperationCount大于1   | dispatch\_queue\_create("", DISPATCH\_QUEUE\_CONCURRENT) |
