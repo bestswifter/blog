@@ -18,6 +18,7 @@
 | 主题 | 文章 |
 |:-------:|:------|
 |Cocoa|[UIView生命周期详解](./articles/uiview-life-time.md)|
+|swift|[Swift 数组扩容原理](./articles/swift-array-append.md)|
 |逆向工程|[一个数字的魔法——破解 Mac 上 198 元的 Paw](./articles/crack-paw.md)|
 
 ## 🖥️ 操作系统
