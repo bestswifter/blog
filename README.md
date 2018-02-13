@@ -27,7 +27,7 @@
 | 主题 | 文章 | 备注 |
 |:-------:|:------|:----:|
 |Cocoa|[UIView生命周期详解](./articles/uiview-life-time.md)<br>[史上最简单的UIScrollView+Autolayout出坑指南](./articles/uiscrollview-with-autolayout.md)<br>||
-| ObjC |[Swift与OC中拷贝与可变性总结](./articles/objc-swift-copy-mutable.md)<br>||
+| ObjC |[Swift与OC中拷贝与可变性总结](./articles/objc-swift-copy-mutable.md)<br>[OC与Swift闭包对比总结](./articles/objc-swift-block.md)<br>||
 |swift|[Swift 数组扩容原理](./articles/swift-array-append.md)<br>[深入探究Swift数组背后的协议、方法、拓展](./articles/swift-array.md)<br>[从原理分析 Swift 的 switch 怎么比较对象](./articles/swift-object-compare.md)|swift 的内容已经过时，不建议阅读|
 |逆向工程|[一个数字的魔法——破解 Mac 上 198 元的 Paw](./articles/crack-paw.md)||
 
