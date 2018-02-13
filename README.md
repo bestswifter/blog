@@ -13,11 +13,13 @@
 
 因此 GitHub 成了最佳的选择，也欢迎各位读者踊跃指正错误，共同创作高质量的文章。
 
+由于有些图片曾经使用简书图床，现在已经无法使用，对此深表遗憾。
+
 ##  iOS
 
 | 主题 | 文章 | 备注 |
 |:-------:|:------|:----:|
-|Cocoa|[UIView生命周期详解](./articles/uiview-life-time.md)||
+|Cocoa|[UIView生命周期详解](./articles/uiview-life-time.md)<br>[史上最简单的UIScrollView+Autolayout出坑指南](./articles/uiscrollview-with-autolayout.md)<br>||
 |swift|[Swift 数组扩容原理](./articles/swift-array-append.md)<br>[深入探究Swift数组背后的协议、方法、拓展](./articles/swift-array.md)<br>[从原理分析 Swift 的 switch 怎么比较对象](./articles/swift-object-compare.md)|swift 的内容已经过时，不建议阅读|
 |逆向工程|[一个数字的魔法——破解 Mac 上 198 元的 Paw](./articles/crack-paw.md)||
 
