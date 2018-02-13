@@ -118,7 +118,7 @@ internal mutating func _copyToNewBuffer(oldCount: Int) {
   var newBuffer = Optional(
   _forceCreateUniqueMutableBuffer(&_buffer, countForNewBuffer: oldCount, minNewCapacity: newCount))
   _arrayOutOfPlaceUpdate(&_buffer, &newBuffer, oldCount, 0, _IgnorePointer())
-  }
+}
 ```
 
 这个方法又分为两步，`_forceCreateUniqueMutableBuffer `和`_arrayOutOfPlaceUpdate `。前者实现了新存储区域的创建，而后者完成了数据的复制工作。
@@ -149,11 +149,10 @@ func _forceCreateUniqueMutableBuffer<_Buffer : _ArrayBufferType>(inout source: _
 
 internal func _forceCreateUniqueMutableBufferImpl<_Buffer : _ArrayBufferType>(inout source: _Buffer,  countForBuffer: Int, minNewCapacity: Int, requiredCapacity: Int) -> _ContiguousArrayBuffer<_Buffer.Element> {
   _sanityCheck(countForBuffer >= 0)
-    _sanityCheck(requiredCapacity >= countForBuffer)
-    _sanityCheck(minNewCapacity >= countForBuffer)
+  _sanityCheck(requiredCapacity >= countForBuffer)
+  _sanityCheck(minNewCapacity >= countForBuffer)
 
-    let minimumCapacity = max(
-  requiredCapacity, minNewCapacity > source.capacity? _growArrayCapacity(source.capacity) : source.capacity)
+  let minimumCapacity = max(requiredCapacity, minNewCapacity > source.capacity? _growArrayCapacity(source.capacity) : source.capacity)
 
   return _ContiguousArrayBuffer(count: countForBuffer, minimumCapacity: minimumCapacity)
 }
