@@ -23,4 +23,4 @@
 
 | 主题 | 文章 |
 |:-------:|:------|
-|线性表|[找数组中出现超过一半的数字的优雅解和拓展](https://bestswifter.com/arrayoccurmorethanhalf/)
+|线性表|[找出数组中出现超过一半的数字的优雅解和拓展](./articles/number-more-than-half.md)|
