@@ -42,7 +42,7 @@
 
 这四层之间的关系如下图所示：
 
-![层次关系](http://7xonij.com1.z0.glb.clouddn.com/自我修养/hierarchy.png)
+![层次关系](http://images.bestswifter.com/%E8%87%AA%E6%88%91%E4%BF%AE%E5%85%BB/hierarchy.png)
 
 ## 虚拟地址空间
 
