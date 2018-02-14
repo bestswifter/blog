@@ -189,7 +189,7 @@ public init(arrayLiteral elements: Element...)
 
 `Element`、`Generator`、`SequenceType`、`CollectionType`、`Array`由下至上构造了数组背后的层次结构。他们的关系如下图所示：
 
-![Swift数组层次结构](http://upload-images.jianshu.io/upload_images/1171077-826537955e9ba99f.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240)
+![Swift数组层次结构](http://images.bestswifter.com/Advanced%20Swift/Collection/array-hierarchy.png)
 
 
 如果我们希望定义一个自己的数据结构，比如链表。首先可以明确它要实现`CollectionType`协议。链表应该是和`Array`同层次的类型。然后我们需要定义一个`_ListType`的协议，这个协议对应数组的`_ArrayList`协议，根据数据结构自身的特性定义一些方法。
