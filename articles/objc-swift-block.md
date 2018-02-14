@@ -6,11 +6,10 @@ OC的block已经有很多相关的文章介绍了，主要难点在于`__block`�
 
 ### 截获基本类型
 
-
 ```objc
 int value = 10;
 void(^block)() = ^{
-NSLog(@"value = %d", value);
+  NSLog(@"value = %d", value);
 };
 value = 20;
 block();
@@ -18,12 +17,12 @@ block();
 // 打印结果是："value = 10"
 ```
 
-OC的block会截获外部变量，对于`int`等基本数据类型，block的内部会拷贝一份，简单来说，它的实现大概是这样的：
+OC 的 block 会截获外部变量，对于`int`等基本数据类型，block的内部会拷贝一份，简单来说，它的实现大概是这样的：
 
 ```objc
 struct block_impl {
-//其它内容
-int value;
+  //其它内容
+  int value;
 };
 ```
 
@@ -36,7 +35,7 @@ int value;
 ```objc
 __block int value = 10;
 void(^block)() = ^{
-NSLog(@"value = %d", value);
+  NSLog(@"value = %d", value);
 };
 value = 20;
 block();
@@ -48,16 +47,16 @@ block();
 
 ```objc
 struct block_impl {
-//其它内容
-block_ref_value *value;
+  //其它内容
+  block_ref_value *value;
 };
 
 struct block_ref_value {
-int value; // 这里保存的才是被截获的value的值。
+  int value; // 这里保存的才是被截获的value的值。
 };
 ```
 
-由于block中一直有一个指针指向value，所以block内部对它的修改，可以影响到block外部的变量。因为block修改的就是那个外部变量而不是外部变量的副本。
+由于 block 中一直有一个指针指向 value，所以 block 内部对它的修改，可以影响到 block 外部的变量。因为 block 修改的就是那个外部变量而不是外部变量的副本。
 
 上面关于block具体实现的例子只是一个简化模型，事实上并非如此，但本质类似。总的来说，只有由`__block`修饰符修饰的变量，在被block截获时才是可变的。关于这方面的详细解释，可以参考这三篇文章：
 
@@ -72,7 +71,7 @@ block截获指针和截获基本类型是相似的，不过稍稍复杂一些。
 ```objc
 Person *p = [[Person alloc] initWithName:@"zxy"];
 void(^block)() = ^{
-NSLog(@"person name = %@", p.name);
+  NSLog(@"person name = %@", p.name);
 };
 
 p.name = @"new name";
@@ -90,9 +89,9 @@ block();
 ```objc
 Person *p = [[Person alloc] initWithName:@"zxy"];
 void(^block)() = ^{
-p.name = @"new name"; //OK，没有改变p
-p = [[Person alloc] initWithName:@"new name"]; //编译错误
-NSLog(@"person name = %@", p.name);
+  p.name = @"new name"; //OK，没有改变p
+  p = [[Person alloc] initWithName:@"new name"]; //编译错误
+  NSLog(@"person name = %@", p.name);
 };
 
 block();
@@ -105,7 +104,7 @@ block();
 ```objc
 __block Person *p = [[Person alloc] initWithName:@"zxy"];
 void(^block)() = ^{
-NSLog(@"person name = %@", p.name);
+  NSLog(@"person name = %@", p.name);
 };
 
 p = nil;
@@ -123,10 +122,10 @@ block();
 ```objc
 Block block;
 if (true) {
-__block Person *p = [[Person alloc] initWithName:@"zxy"];
-block = ^{
-NSLog(@"person name = %@", p.name);
-};
+  __block Person *p = [[Person alloc] initWithName:@"zxy"];
+  block = ^{
+    NSLog(@"person name = %@", p.name);
+  };
 }
 block();
 
@@ -144,7 +143,7 @@ block();
 
 id __weak weakSelf = self;
 block = ^{
-//使用weakSelf代替self
+  //使用weakSelf代替self
 };
 ```
 
@@ -165,8 +164,8 @@ OC中的`__block`是一个很讨厌的修饰符。它不仅不容易理解，而
 ```swift
 var x = 42
 let f = {
-// [x] in //如果取消注释，结果是42
-print(x)
+  // [x] in //如果取消注释，结果是42
+  print(x)
 }
 x = 43
 f() // 结果是43
@@ -177,11 +176,11 @@ f() // 结果是43
 ```swift
 var block2: (() -> ())?
 if true {
-var a: A? = A()
-block2 = {
-print(a?.name)
-}
-a = A(name: "new name")
+  var a: A? = A()
+  block2 = {
+    print(a?.name)
+  }
+  a = A(name: "new name")
 }
 block2?() //结果是："Optional("new name")"
 ```
@@ -191,12 +190,11 @@ block2?() //结果是："Optional("new name")"
 ```swift
 var block2: (() -> ())?
 if true {
-var a: A? = A()
-block2 = {
-[a] in
-print(a?.name)
-}
-a = A(name: "new name")
+  var a: A? = A()
+  block2 = { [a] in
+    print(a?.name)
+  }
+  a = A(name: "new name")
 }
 block2?() //结果是："Optional("old name")"
 ```
@@ -213,15 +211,15 @@ Swift会自动持有被截获的变量的引用，这样就可以在block内部�
 
 ```swift
 class A {
-var name: String = "A"
-var block: (() -> ())?
+  var name: String = "A"
+  var block: (() -> ())?
 
-//其他方法
+  //其他方法
 }
 
 var a: A? = A()
 var block = {
-print(a?.name)
+  print(a?.name)
 }
 a?.block = block
 a = nil
@@ -239,11 +237,11 @@ block()
 ```swift
 var block: (() -> ())?
 if true {
-var a = A()
-block = {
-print(a.name)
-}
-a.name = "New Name"
+  var a = A()
+  block = {
+    print(a.name)
+  }
+  a.name = "New Name"
 }
 block!()
 ```
