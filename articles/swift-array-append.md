@@ -38,7 +38,7 @@ Swift已经开源了，github上[相关源码](https://github.com/apple/apple)�
 
 当我们搜索"mutating func append(newElement: Element)"后，就只有六个相关文件了。如图所示:
 
-![搜索结果](http://upload-images.jianshu.io/upload_images/1171077-a6c40ac0f2d2f126.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240)
+![搜索结果](http://images.bestswifter.com/Swift_append/search_result.png)
 
 前三个文件无法直接打开，暂时先不管。其实第三个一看也知道是单元测试文件。第六个是字符串，也不是我们感兴趣的。所以我们依次打开"ArrayType.swift"和"RangeReplaceableCollectionType.swift"这两个文件。
 
