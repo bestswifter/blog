@@ -13,11 +13,11 @@
 
 首先按下`Command + I`打开Instrument，本文主要用到的是Core Animation工具：
 
-![打开Core Animation调试](http://upload-images.jianshu.io/upload_images/1171077-ae80c7d848fc7b74.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240)
+![打开Core Animation调试](http://images.bestswifter.com/UIKitPerformance/Instrument.png)
 
 注意这个调试必须使用真机，点击左上角的红色圆圈就会开始录制。新手可能不太熟悉，这里简单介绍一下调试界面：
 
-![调试界面](http://upload-images.jianshu.io/upload_images/1171077-2d3291d97e7ffe99.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240)
+![调试界面](http://images.bestswifter.com/UIKitPerformance/Introduce.png)
 
 我们需要了解两个两个区域：
 
@@ -34,7 +34,7 @@
 
 第一个调试选项"Color Blended Layers"正是用于检测哪里发生了图层混合，并用红色标记出来。因此我们需要尽可能减少看到的红色区域。一旦发现应该想法设法消除它。开始调试后勾选这个选项，我们在手机上可以看到如下的场景：
 
-![Color Blended Layers](http://upload-images.jianshu.io/upload_images/1171077-6fb5ba7033c1f825.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240)
+![Color Blended Layers](http://images.bestswifter.com/UIKitPerformance/blendedlayer.png)
 
 很多文章里说把控件设置为`opaque = true`，其原理就是希望避免图层混合，然而这种调优一般情况下用处不大。因为`UIView`的`opaque`属性默认值就是`true`，也就是说只要不是人为设置成透明，都不会出现图层混合。比如demo中就没有任何透明的控件。
 
@@ -60,7 +60,7 @@ label.layer.shouldRasterize = true
 
 Instrument中，第二个调试选项是“Color Hits Green and Misses Red”，它表示如果命中缓存则显示为绿色，否则显示为红色，显然绿色越多越好，红色越少越好。勾选这个选项后我们看到如下的场景：
 
-![Color Hits Green and Misses Red](http://upload-images.jianshu.io/upload_images/1171077-7d6dcd41fe0d6a72.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240)
+![Color Hits Green and Misses Red](http://images.bestswifter.com/UIKitPerformance/rasterize.png)
 
 光栅化的核心在于缓存的思想。我们自己动手把玩一下，可以发现以下几个有意思的现象：
 
@@ -84,11 +84,11 @@ Instrument中，第二个调试选项是“Color Hits Green and Misses Red”，
 
 当我们打开JPEG格式的图片时，CPU会进行一系列运算，将JPEG图片解压成像素数据。显然这个工作会消耗不少时间，所以不应该在滑动时进行，我们应该预先处理好图片。借用WWDC上的一页PPT来说明：
 
-![显示流程](http://upload-images.jianshu.io/upload_images/1171077-0386edf0d24b7099.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240)
+![显示流程](http://images.bestswifter.com/UIKitPerformance/pipeline.png)
 
 Commit Transaction和Decode在同一帧内进行，如果这两个操作的耗时超过16.67ms，Draw Calls就会延迟到下一帧，从而导致fps值的降低。下面是Commit Transaction的详细流程：
 
-![解码与转换](http://upload-images.jianshu.io/upload_images/1171077-5f115f552ca219ad.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240)
+![解码与转换](http://images.bestswifter.com/UIKitPerformance/commit.png)
 
 在第三步的Prepare中，CPU主要处理两件事：
 
@@ -103,7 +103,7 @@ Commit Transaction和Decode在同一帧内进行，如果这两个操作的耗�
 
 第四个选项的使用场景不多，我们直接看一下第五个选项“Color Misaligned Images”。它表示如果图片需要缩放则标记为黄色，如果没有像素对齐则标记为紫色。勾选上这个选项并进行调试，可以看到如下场景：
 
-![图片缩放](http://upload-images.jianshu.io/upload_images/1171077-c6226861bea907a9.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240)
+![图片缩放](http://images.bestswifter.com/UIKitPerformance/scale.png)
 
 在demo中，每个`UIImageView`的大小都是180x180，而只有第二张图片的像素大小是360x360。因此除了第二张图片，其他的图片都需要被缩放。图片的缩放需要占用时间，因此我们要尽可能保证无论是本地图片还是从网络或取得图片的大小，都与其frame保持一致。
 
@@ -113,11 +113,11 @@ Commit Transaction和Decode在同一帧内进行，如果这两个操作的耗�
 
 离屏渲染表示渲染发生在屏幕之外，你可能认为这是一句废话。为了真正解释清楚什么是离屏渲染，我们先来看一下正常的渲染通道(Render-Pass)：
 
-![正常渲染通道](http://upload-images.jianshu.io/upload_images/1171077-e22bfaff8314b6d6.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240)
+![正常渲染通道](http://images.bestswifter.com/UIKitPerformance/renderpass.png)
 
 首先，OpenGL提交一个命令到Command Buffer，随后GPU开始渲染，渲染结果放到Render Buffer中，这是正常的渲染流程。但是有一些复杂的效果无法直接渲染出结果，它需要分步渲染最后再组合起来，比如添加一个蒙版(mask)：
 
-![离屏渲染](http://upload-images.jianshu.io/upload_images/1171077-551823de77e0e04e.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240)
+![离屏渲染](http://images.bestswifter.com/UIKitPerformance/offscreenpass.png)
 
 在前两个渲染通道中，GPU分别得到了纹理(texture，也就是那个相机图标)和layer(蓝色的蒙版)的渲染结果。但这两个渲染结果没有直接放入Render Buffer中，也就表示这是离屏渲染。直到第三个渲染通道，才把两者组合起来放入Render Buffer中。离屏渲染意味着把渲染结果临时保存，等用到时再取出，因此相对于普通渲染更占用资源。
 
@@ -131,7 +131,7 @@ Commit Transaction和Decode在同一帧内进行，如果这两个操作的耗�
 
 开始调试并勾选“Color Offscreen-Rendered Yellow”，会看到这样的场景：
 
-![离屏渲染](http://upload-images.jianshu.io/upload_images/1171077-84a9318793df9d5a.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240)
+![离屏渲染](http://images.bestswifter.com/UIKitPerformance/offscreenrender.png)
 
 如果没有进行第二步优化，你会发现label也是黄色。可以看到tabbar和statusBar也是黄色，这是因为它们使用了模糊效果。图片也是黄色，这说明它也进行了离屏渲染，观察源码后发现主要原因是它使用了阴影，接下来我们进行第四个优化，在设置阴影效果的四行代码下面添加一行：
 
@@ -161,7 +161,7 @@ label.layer.rasterizationScale = layer.contentsScale
 
 刷新视图时，我们应该把需要重绘的区域尽可能缩小。对于未发生变化的内容则不应该重绘，第八个选项“Flash updated Regions”用于标记发生重绘的区域。一个典型的例子是系统的时钟应用，绝大多数时候只有显示秒针的区域需要重绘：
 
-![重绘区域](http://upload-images.jianshu.io/upload_images/1171077-2092b1b15b094025.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240)
+![重绘区域](http://images.bestswifter.com/UIKitPerformance/flash.png)
 
 # 总结
 
