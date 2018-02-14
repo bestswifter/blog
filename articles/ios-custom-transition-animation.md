@@ -77,11 +77,11 @@
 ```swift
 // 这个类相当于A
 class CrossDissolveFirstViewController: UIViewController, UIViewControllerTransitioningDelegate {
-  // 这个对象相当于B
-  crossDissolveSecondViewController.transitioningDelegate = self
+    // 这个对象相当于B
+    crossDissolveSecondViewController.transitioningDelegate = self
 
-  // 点击按钮触发的函数
-  func animationButtonDidClicked() {
+    // 点击按钮触发的函数
+    func animationButtonDidClicked() {
         self.presentViewController(crossDissolveSecondViewController, animated: true, completion: nil)
     }
 
