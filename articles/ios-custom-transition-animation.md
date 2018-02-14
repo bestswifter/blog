@@ -88,9 +88,9 @@ class CrossDissolveFirstViewController: UIViewController, UIViewControllerTransi
     // 下面这两个函数定义在UIViewControllerTransitioningDelegate协议中
     // 用于为 present 和 dismiss 提供 animator
     func animationControllerForPresentedController(presented: UIViewController, presentingController presenting: UIViewController, sourceController source: UIViewController) -> UIViewControllerAnimatedTransitioning? {
-//        也可以使用CrossDissolveAnimator，动画效果各有不同
-//        return CrossDissolveAnimator()
-        return HalfWaySpringAnimator()
+      // 也可以使用CrossDissolveAnimator，动画效果各有不同
+      // return CrossDissolveAnimator()
+      return HalfWaySpringAnimator()
     }
 
     func animationControllerForDismissedController(dismissed: UIViewController) -> UIViewControllerAnimatedTransitioning? {
@@ -145,9 +145,9 @@ class HalfWaySpringAnimator: NSObject, UIViewControllerAnimatedTransitioning {
         UIView.animateWithDuration(transitionDuration, delay: 0, usingSpringWithDamping: 0.6, initialSpringVelocity: 0, options: .CurveLinear, animations: { () -> Void in
             toView!.alpha = 1.0     // 逐渐变为不透明
             toView?.frame = transitionContext.finalFrameForViewController(toViewController!)    // 移动到指定位置
-            }) { (finished: Bool) -> Void in
-                let wasCancelled = transitionContext.transitionWasCancelled()
-                transitionContext.completeTransition(!wasCancelled)
+        }) { (finished: Bool) -> Void in
+          let wasCancelled = transitionContext.transitionWasCancelled()
+          transitionContext.completeTransition(!wasCancelled)
         }
     }
 }
@@ -183,29 +183,29 @@ class HalfWaySpringAnimator: NSObject, UIViewControllerAnimatedTransitioning {
 ```swift
 // 这个相当于fromViewController
 class InteractivityFirstViewController: UIViewController {
-  // 这个相当于toViewController
-  lazy var interactivitySecondViewController: InteractivitySecondViewController = InteractivitySecondViewController()
-  // 定义了一个InteractivityTransitionDelegate类作为代理
-  lazy var customTransitionDelegate: InteractivityTransitionDelegate = InteractivityTransitionDelegate()
+    // 这个相当于toViewController
+    lazy var interactivitySecondViewController: InteractivitySecondViewController = InteractivitySecondViewController()
+    // 定义了一个InteractivityTransitionDelegate类作为代理
+    lazy var customTransitionDelegate: InteractivityTransitionDelegate = InteractivityTransitionDelegate()
 
-  override func viewDidLoad() {
-    super.viewDidLoad()
-    setupView() // 主要是一些UI控件的布局，可以无视其实现细节
+    override func viewDidLoad() {
+        super.viewDidLoad()
+        setupView() // 主要是一些UI控件的布局，可以无视其实现细节
 
-    /// 设置动画代理，这个代理比较复杂，所以我们新建了一个代理对象而不是让self作为代理
-    interactivitySecondViewController.transitioningDelegate = customTransitionDelegate
+        /// 设置动画代理，这个代理比较复杂，所以我们新建了一个代理对象而不是让self作为代理
+        interactivitySecondViewController.transitioningDelegate = customTransitionDelegate
     }
 
-  // 触发手势时，也会调用animationButtonDidClicked方法
-  func interactiveTransitionRecognizerAction(sender: UIScreenEdgePanGestureRecognizer) {
-    if sender.state == .Began {
-      self.animationButtonDidClicked(sender)
+    // 触发手势时，也会调用animationButtonDidClicked方法
+    func interactiveTransitionRecognizerAction(sender: UIScreenEdgePanGestureRecognizer) {
+        if sender.state == .Began {
+            self.animationButtonDidClicked(sender)
+        }
     }
-  }
 
-  func animationButtonDidClicked(sender: AnyObject) {
-    self.presentViewController(interactivitySecondViewController, animated: true, completion: nil)
-  }
+    func animationButtonDidClicked(sender: AnyObject) {
+      self.presentViewController(interactivitySecondViewController, animated: true, completion: nil)
+    }
 }
 ```
 
@@ -238,26 +238,26 @@ animator中的代码略去，它和非交互式动画中的animator类似。因�
 
 ```swift
 class TransitionInteractionController: UIPercentDrivenInteractiveTransition {
-  /// 当手势有滑动时触发这个函数
-  func gestureRecognizeDidUpdate(gestureRecognizer: UIScreenEdgePanGestureRecognizer) {
-    switch gestureRecognizer.state {
-      case .Began: break
-      case .Changed: self.updateInteractiveTransition(self.percentForGesture(gestureRecognizer))  //手势滑动，更新百分比
-      case .Ended:    // 滑动结束，判断是否超过一半，如果是则完成剩下的动画，否则取消动画
-        if self.percentForGesture(gestureRecognizer) >= 0.5 {
-          self.finishInteractiveTransition()
+    /// 当手势有滑动时触发这个函数
+    func gestureRecognizeDidUpdate(gestureRecognizer: UIScreenEdgePanGestureRecognizer) {
+        switch gestureRecognizer.state {
+            case .Began: break
+            case .Changed: self.updateInteractiveTransition(self.percentForGesture(gestureRecognizer))  //手势滑动，更新百分比
+            case .Ended:    // 滑动结束，判断是否超过一半，如果是则完成剩下的动画，否则取消动画
+                if self.percentForGesture(gestureRecognizer) >= 0.5 {
+                    self.finishInteractiveTransition()
+                }
+            else {
+                self.cancelInteractiveTransition()
+            }
+            default: self.cancelInteractiveTransition()
         }
-        else {
-          self.cancelInteractiveTransition()
-        }
-      default: self.cancelInteractiveTransition()
     }
-  }
 
-  private func percentForGesture(gesture: UIScreenEdgePanGestureRecognizer) -> CGFloat {
-    let percent = 根据gesture计算得出
-    return percent
-  }
+    private func percentForGesture(gesture: UIScreenEdgePanGestureRecognizer) -> CGFloat {
+        let percent = 根据gesture计算得出
+        return percent
+    }
 }
 ```
 
@@ -294,78 +294,78 @@ class TransitionInteractionController: UIPercentDrivenInteractiveTransition {
 ```swift
 // 这个相当于fromViewController
 class CustomPresentationFirstViewController: UIViewController {
-	// 这个相当于toViewController
-  lazy var customPresentationSecondViewController: CustomPresentationSecondViewController = CustomPresentationSecondViewController()
-  // 创建PresentationController
-  lazy var customPresentationController: CustomPresentationController = CustomPresentationController(presentedViewController: self.customPresentationSecondViewController, presentingViewController: self)
+    // 这个相当于toViewController
+    lazy var customPresentationSecondViewController: CustomPresentationSecondViewController = CustomPresentationSecondViewController()
+    // 创建PresentationController
+    lazy var customPresentationController: CustomPresentationController = CustomPresentationController(presentedViewController: self.customPresentationSecondViewController, presentingViewController: self)
 
-  override func viewDidLoad() {
-    super.viewDidLoad()
-    setupView() // 主要是一些UI控件的布局，可以无视其实现细节
+    override func viewDidLoad() {
+        super.viewDidLoad()
+        setupView() // 主要是一些UI控件的布局，可以无视其实现细节
 
-    // 设置转场动画代理
-    customPresentationSecondViewController.transitioningDelegate = customPresentationController
-  }
+        // 设置转场动画代理
+        customPresentationSecondViewController.transitioningDelegate = customPresentationController
+    }
 
-  override func didReceiveMemoryWarning() {
-    super.didReceiveMemoryWarning()
-    // Dispose of any resources that can be recreated.
-  }
+    override func didReceiveMemoryWarning() {
+        super.didReceiveMemoryWarning()
+        // Dispose of any resources that can be recreated.
+    }
 
-  func animationButtonDidClicked() {
-    self.presentViewController(customPresentationSecondViewController, animated: true, completion: nil)
-  }
+    func animationButtonDidClicked() {
+        self.presentViewController(customPresentationSecondViewController, animated: true, completion: nil)
+    }
 }
 ```
 
-重点在于如何实现`CustomPresentationController `这个类：
+重点在于如何实现 `CustomPresentationController` 这个类：
 
 ```swift
 class CustomPresentationController: UIPresentationController, UIViewControllerTransitioningDelegate {
-  var presentationWrappingView: UIView?  // 这个视图封装了原视图，添加了阴影和圆角效果
-  var dimmingView: UIView? = nil  // alpha为0.5的黑色蒙版
+    var presentationWrappingView: UIView?  // 这个视图封装了原视图，添加了阴影和圆角效果
+    var dimmingView: UIView? = nil  // alpha为0.5的黑色蒙版
 
-  // 告诉UIKit为哪个视图添加动画效果
-  override func presentedView() -> UIView? {
-    return self.presentationWrappingView
-  }
+    // 告诉UIKit为哪个视图添加动画效果
+    override func presentedView() -> UIView? {
+        return self.presentationWrappingView
+    }
 }
 
 // 四个方法自定义转场动画发生前后的操作
 extension CustomPresentationController {
-  override func presentationTransitionWillBegin() {
-    // 设置presentationWrappingView和dimmingView的UI效果
-    let transitionCoordinator = self.presentingViewController.transitionCoordinator()
+    override func presentationTransitionWillBegin() {
+        // 设置presentationWrappingView和dimmingView的UI效果
+        let transitionCoordinator = self.presentingViewController.transitionCoordinator()
         self.dimmingView?.alpha = 0
-    / 通过转场协调器执行同步的动画效果
-    transitionCoordinator?.animateAlongsideTransition({ (context: UIViewControllerTransitionCoordinatorContext) -> Void in
-      self.dimmingView?.alpha = 0.5
-    }, completion: nil)
-  }
-
-  /// present结束时，把dimmingView和wrappingView都清空，这些临时视图用不到了
-  override func presentationTransitionDidEnd(completed: Bool) {
-    if !completed {
-      self.presentationWrappingView = nil
-      self.dimmingView = nil
+        // 通过转场协调器执行同步的动画效果
+        transitionCoordinator?.animateAlongsideTransition({ (context: UIViewControllerTransitionCoordinatorContext) -> Void in
+            self.dimmingView?.alpha = 0.5
+        }, completion: nil)
     }
-  }
 
-  /// dismiss开始时，让dimmingView完全透明，这个动画和animator中的动画同时发生
-  override func dismissalTransitionWillBegin() {
-    let transitionCoordinator = self.presentingViewController.transitionCoordinator()
-    transitionCoordinator?.animateAlongsideTransition({ (context: UIViewControllerTransitionCoordinatorContext) -> Void in
-      self.dimmingView?.alpha = 0
-    }, completion: nil)
-  }
-
-  /// dismiss结束时，把dimmingView和wrappingView都清空，这些临时视图用不到了
-  override func dismissalTransitionDidEnd(completed: Bool) {
-    if completed {
-      self.presentationWrappingView = nil
-      self.dimmingView = nil
+    /// present结束时，把dimmingView和wrappingView都清空，这些临时视图用不到了
+    override func presentationTransitionDidEnd(completed: Bool) {
+        if !completed {
+            self.presentationWrappingView = nil
+            self.dimmingView = nil
+        }
     }
-  }
+
+    /// dismiss开始时，让dimmingView完全透明，这个动画和animator中的动画同时发生
+    override func dismissalTransitionWillBegin() {
+        let transitionCoordinator = self.presentingViewController.transitionCoordinator()
+        transitionCoordinator?.animateAlongsideTransition({ (context: UIViewControllerTransitionCoordinatorContext) -> Void in
+          self.dimmingView?.alpha = 0
+        }, completion: nil)
+    }
+
+    /// dismiss结束时，把dimmingView和wrappingView都清空，这些临时视图用不到了
+    override func dismissalTransitionDidEnd(completed: Bool) {
+        if completed {
+            self.presentationWrappingView = nil
+            self.dimmingView = nil
+        }
+    }
 }
 
 extension CustomPresentationController {
@@ -380,14 +380,14 @@ extension CustomPresentationController {
 
 ```swift
 class FromViewController: UIViewController, UINavigationControllerDelegate {
-   let toViewController: ToViewController = ToViewController()
+    let toViewController: ToViewController = ToViewController()
 
-  override func viewDidLoad() {
-    super.viewDidLoad()
-    setupView() // 主要是一些UI控件的布局，可以无视其实现细节
+    override func viewDidLoad() {
+        super.viewDidLoad()
+        setupView() // 主要是一些UI控件的布局，可以无视其实现细节
 
-    self.navigationController.delegate = self
-  }
+        self.navigationController.delegate = self
+    }
 }
 ```
 
@@ -397,13 +397,13 @@ class FromViewController: UIViewController, UINavigationControllerDelegate {
 
 ```swift
 func navigationController(navigationController: UINavigationController, animationControllerForOperation operation: UINavigationControllerOperation, fromViewController fromVC: UIViewController, toViewController toVC: UIViewController) -> UIViewControllerAnimatedTransitioning? {
-  if operation == .Push {
-    return PushAnimator()
-  }
-  if operation == .Pop {
-    return PopAnimator()
-  }
-  return nil;
+    if operation == .Push {
+        return PushAnimator()
+    }
+    if operation == .Pop {
+        return PopAnimator()
+    }
+    return nil;
 }
 ```
 
