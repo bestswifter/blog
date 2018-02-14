@@ -20,7 +20,7 @@ view.layer.cornerRadius = 5
 
 先别急着关掉网页，也别急着回复，我们让事实说话。打开 Instuments，选择 **Core Animation** 调试，你会发现既没有 Off-Screen Render，也没有降低帧数。关于使用 Instuments 分析应用，你可以参考我的这篇文章：[UIKit性能调优实战讲解](http://www.jianshu.com/p/619cf14640f3)。从截图中可以看到第三个棕色视图**确确实实**设置了圆角：
 
-![圆角效果](http://images.bestswifter.com/CornerRadius/corner.png)
+![圆角效果](http://images.bestswifter.com/corner.png)
 
 不过查看一下代码可以发现，有一个 `UILabel` 也设置了圆角，但是没有表现出任何变化。关于这一点，你可以查看 `cornerRadius` 属性的注释：
 
