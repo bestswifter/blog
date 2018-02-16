@@ -22,7 +22,7 @@
 |读书总结|[《程序员的自我修养》读书总结](./articles/zi-wo-xiu-yang.md)||
 | 年度分享|[我的 2015 年总结](./articles/2015-conclusion.md)<br>||
 | 其它分享|[让 BAT 的 Offer 不再难拿](./articles/bat-offer.md)<br>||
-|工作效率|[如何大幅度提高 Mac 开发效率](./articles/efficient-mac.md)<br>|
+|工作效率|[如何大幅度提高 Mac 开发效率](./articles/efficient-mac.md)<br>[成吨提高开发效率的终极武器——自己开发 workflow](./articles/alfred-workflows.md)<br>|
 
 ##  iOS
 
@@ -33,7 +33,7 @@
 |swift|[Swift 数组扩容原理](./articles/swift-array-append.md)<br>[深入探究Swift数组背后的协议、方法、拓展](./articles/swift-array.md)<br>[从原理分析 Swift 的 switch 怎么比较对象](./articles/swift-object-compare.md)<br>[Swift 实现多线程 map 函数](./articles/swift-thread-safe-map.md)<br>[你其实真的不懂print("Hello,world")](./articles/swift-print.md)<br>[Swift 中字典的实现原理](./articles/swift-dictionary.md)<br>[Swift 中你应该知道的一些有用的 tips](./articles/swift-tips.md)<br>[当 UIColor 遇上 Swift](./articles/swift-uicolor.md)<br>|swift 的内容已经过时，不建议阅读|
 |逆向工程|[一个数字的魔法——破解 Mac 上 198 元的 Paw](./articles/crack-paw.md)||
 
-## 前端
+## 🌐 前端
 
 | 主题 | 文章 | 备注 |
 |:-------:|:------|:----:|
