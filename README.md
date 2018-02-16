@@ -4,6 +4,23 @@
 <img src='http://images.bestswifter.com/ghost/1/e3/7161ecc907a4ee5f13214f2cac9d4.jpg'>
 </p>
 
+<p align='center'>
+<img src="https://img.shields.io/badge/platform-iOS-ff69b4.svg">
+<img src="https://img.shields.io/badge/language-Objective--C-orange.svg">
+<img src="https://img.shields.io/badge/language-python-yellowgreen.svg">
+<img src="https://img.shields.io/badge/language-shell-green.svg">
+<img src="https://img.shields.io/badge/language-JavaScript-yellow.svg">
+<a href=""><img src="https://img.shields.io/badge/license-CC-000000.svg"></a>
+<img src="https://img.shields.io/badge/blog-bestswifter-blue.svg">
+</p>
+
+<p align='center'>
+<a href="http://weibo.com/bestswifter"><img src="https://img.shields.io/badge/weibo-@bestswifter-f974ce.svg?style=flat&colorA=f4292e"></a>
+<a href="https://juejin.im/user/57638ad8207703006b06e3ef"><img src="https://img.shields.io/badge/%E6%8E%98%E9%87%91-@bestswifter-fd6f32.svg?style=flat&colorA=1970fe"></a>
+<a href="https://www.zhihu.com/people/bestswifter/activities"><img src="https://img.shields.io/badge/%E7%9F%A5%E4%B9%8E-@bestswifter-50E3C2.svg?style=flat&colorA=0083ea"></a>
+<img src="https://img.shields.io/badge/PR-welcome%20!-brightgreen.svg?colorA=a0cd34">
+</p>
+
 这里是我的文章合集，不管是在自己搭建的博客写作，还是还是在技术网站上写文章，都会同步到 GitHub 上。
 
 ## 为什么要建这个仓库
