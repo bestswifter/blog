@@ -1,5 +1,9 @@
 # bestswifter 的博客
 
+<p align='center'>
+<img src='http://images.bestswifter.com/ghost/1/e3/7161ecc907a4ee5f13214f2cac9d4.jpg'>
+</p>
+
 这里是我的文章合集，不管是在自己搭建的博客写作，还是还是在技术网站上写文章，都会同步到 GitHub 上。
 
 ## 为什么要建这个仓库
