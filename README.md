@@ -93,4 +93,4 @@
 
 | 主题 | 文章 |
 |:-------:|:------|
-|大杂烩|[Drawable 复用](./articles/android-drawble-reuse.md)<br>[该死的 XML in Android](./articles/android-xml.md)<br>|
+|大杂烩|[Drawable 复用](./articles/android-drawble-reuse.md)<br>[该死的 XML in Android](./articles/android-xml.md)<br>[业务爬坑与总结——开屏广告热启动实现方案](./articles/android-splash.md)<br>|
