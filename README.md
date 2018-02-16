@@ -87,7 +87,7 @@
 
 | 主题 | 文章 |
 |:-------:|:------|
-|编程语言趣谈|[白话 Ruby 与 DSL 以及在 iOS 开发中的运用](./articles/dsl-ruby-ios.md)<br>[从 Swift 的面向协议编程说开去](./articles/pop.md)<br>||
+|编程语言趣谈|[白话 Ruby 与 DSL 以及在 iOS 开发中的运用](./articles/dsl-ruby-ios.md)<br>[从 Swift 的面向协议编程说开去](./articles/pop.md)<br>[大前端开发者需要了解的基础编译原理和语言知识](./articles/compile-and-language.md)<br>||
 |设计模式|[我眼中的工厂模式](./articles/design-pattern-factory.md)<br>||
 |通用知识|[指针和引用的区别](./articles/pointer-and-reference.md)<br>||
 
