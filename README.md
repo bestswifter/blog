@@ -87,3 +87,9 @@
 | 主题 | 文章 |
 |:-------:|:------|
 |编程语言趣谈|[白话 Ruby 与 DSL 以及在 iOS 开发中的运用](./articles/dsl-ruby-ios.md)<br>[从 Swift 的面向协议编程说开去](./articles/pop.md)<br>||
+
+## 📱 安卓开发
+
+| 主题 | 文章 |
+|:-------:|:------|
+|大杂烩|[Drawable 复用](./articles/android-drawble-reuse.md)<br>[该死的 XML in Android](./articles/android-xml.md)<br>|
