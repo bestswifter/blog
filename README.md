@@ -49,4 +49,4 @@
 
 | 主题 | 文章 |
 |:-------:|:------|
-|线性表|[找出数组中出现超过一半的数字的优雅解和拓展](./articles/number-more-than-half.md)|
+|线性表|[找出数组中出现超过一半的数字的优雅解和拓展](./articles/number-more-than-half.md)<br>[深入理解哈希表](./articles/hashtable.md)<br>|
