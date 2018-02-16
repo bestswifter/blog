@@ -42,7 +42,7 @@
 |:----:|:-------|:------|
 |读书总结|[《程序员的自我修养》读书总结](./articles/zi-wo-xiu-yang.md)||
 | 年度分享|[我的 2015 年总结](./articles/2015-conclusion.md)<br>[我的 2016 年总结](./articles/2016-conclusion.md)|<br>|
-| 其它分享|[让 BAT 的 Offer 不再难拿](./articles/bat-offer.md)<br>||
+| 其它分享|[让 BAT 的 Offer 不再难拿](./articles/bat-offer.md)<br>[复盘微博短链接盗窃门](./articles/weibo-short-url.md)<br>||
 |工作效率|[如何大幅度提高 Mac 开发效率](./articles/efficient-mac.md)<br>[成吨提高开发效率的终极武器——自己开发 workflow](./articles/alfred-workflows.md)<br>|
 
 ##  iOS
