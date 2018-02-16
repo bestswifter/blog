@@ -73,7 +73,7 @@
 
 首先我们来思考一个问题，数据源作为 M，它持有的 Item 长什么样？答案是一个二维数组，每个元素保存了一个 `section` 所需要的全部信息。因此除了有自己的数组（给cell用）外，还有 section 的标题等，我们把这样的元素命名为 `SectionObject`：
 
-```
+```objc
 @interface KtTableViewSectionObject : NSObject
 
 @property (nonatomic, copy) NSString *headerTitle; // UITableDataSource 协议中的 titleForHeaderInSection 方法可能会用到
@@ -174,7 +174,7 @@
 
 cell 高度的实现如下，调用数据源的方法获取到数据：
 
-```ojbc
+```objc
 - (CGFloat)tableView:(UITableView*)tableView heightForRowAtIndexPath:(NSIndexPath*)indexPath {
     id<KtTableViewDataSource> dataSource = (id<KtTableViewDataSource>)tableView.dataSource;
     
