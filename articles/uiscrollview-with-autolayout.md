@@ -14,13 +14,13 @@
 
 但是在Autolayout时代，为了简化布局，我们希望`contentSize`能够自动设置。比如有一个scrollView，它有两个子视图。frame分别为(x: 0, y: 0, width: 10, height: 10)和(x: 10, y: 0, width: 10, height: 10)，那么我们自然会认为这两个视图左右并排排列，`contentSize`为(x: 0, y: 0, width: 20, height: 10)：
 
-![自动计算contentSize](http://upload-images.jianshu.io/upload_images/1171077-fdfcca2665dcc9b6.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240)
+![自动计算contentSize](http://images.bestswifter.com/Autolayout+Scrollview/sample1.png)
 
 这种把若干个子视图合并，得出`contentSize`的能力，人类是天生具备的，但是计算机却不是这样。仅凭以上信息，程序无法推断出真正的`contentSize`。原因在于，我们没有明确的告诉系统，在这两个子视图拼接而成的区域以外，还有没有区域应该被`contentSize`包含。
 
 也就是说，`contentSize`也有可能是下图中的阴影部分：
 
-![更大的contentSize](http://upload-images.jianshu.io/upload_images/1171077-6ddebf7d3443f769.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240)
+![更大的contentSize](http://images.bestswifter.com/Autolayout+Scrollview/sample2.png)
 
 如果需要指定`contentSize`就是两个正方形拼接而成的区域，我们还需要提供四个信息：
 
@@ -53,7 +53,7 @@ subview.snp_makeConstraints { (make) -> Void in
 
 明白了问题的理论背景后，我们通过一个具体的需求，来看看正确的代码怎么写，以下面这个效果为例：
 
-![任务目标](http://upload-images.jianshu.io/upload_images/1171077-7b2cb5d6fff53e4b.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240)
+![任务目标](http://images.bestswifter.com/Autolayout+Scrollview/1.pic.png)
 
 如图所示，中间是一个`UIScrollView`,它的背景颜色是黄色。红色部分我们称之为`box`，它是一个普通的，红色背景的`UIView`。也就是说我们向`UIScrollView`中添加了多个`box`，每个子`box`之间间隔一定距离。我们分步实现这个功能
 
