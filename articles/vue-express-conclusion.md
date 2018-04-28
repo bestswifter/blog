@@ -66,7 +66,7 @@ PaaS 表示：平台即服务（Platform as a Service），类似的名词还有
 
 我使用了 Vue 的脚手架来构建应用：
 
-```bash
+```shell
 npm install --global vue-cli
 vue init webpack my-project
 ```
@@ -240,7 +240,7 @@ npm install --save vue-markdown
 
 在使用中遇到几个有意思的问题。首先，编译出来的 HTML 里用的都是 `href` 这样的超链接，但如果我想做一个 wiki 页面，点击站内的文章就会跳转出去，从而破坏了 SPA 的使用体验。所以我的做法是用一个 div 包住 HTML，然后捕获点击事件，如果是页面内跳转，就转用路由：
 
-```vue
+```js
 <div @click="clickHTML($event)">
     <vue-markdown :toc="true" class="markdown-body" v-bind:source="msg"></vue-markdown>
 </div>
@@ -262,7 +262,7 @@ clickHTML: function (event) {
 
 在使用路由跳转时，因为命中了同一个路由，当前组件不会再经历 `create` 或者 `mounted` 这样的生命周期，所以改用 watch 的方式来获取路由参数变动的通知：
 
-```vue
+```js
 watch: {
     '$route.params.file': function (id) {
         this.updateContent()
@@ -441,7 +441,7 @@ Sequelize-auto 的使用并不算特别简单，所以我封装了一个脚本 `
 
 假设我们想要修改某个表中的符合条件的数据，代码可以这样写：
 
-```
+```js
 let models = require('models')
 models.table.update(
     {
