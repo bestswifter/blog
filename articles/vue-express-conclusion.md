@@ -73,7 +73,7 @@ vue init webpack my-project
 
 为了避免把本地的服务弄得乱七八糟，我选择自定义一个端口，很多人都会说，在 `package.json` 文件里面修改一下 webpack-dev-server 的启动参数就行了：
 
-```json
+```shell
 webpack-dev-server --inline --progress --port 12345 --config build/webpack.dev.conf.js
 ```
 
