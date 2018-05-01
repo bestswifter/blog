@@ -76,7 +76,7 @@ Pipeline 是为了减少不必要的 TCP 连接，但依然存在队头阻塞(HO
 
 我们知道 TCP 协议会保证数据的可达性，如果发生了丢包或者错包，数据就会被重传。于是问题来了，如果一个包丢了，那么后面的包就得停下来等这个包重新传输，也就是发生了队头阻塞。当然 TCP 协议的设计者们也不傻，他们发明了滑动窗口的概念:
 
-![TCP 窗口](http://images.bestswifter.com/network/tcp-window.png)
+![TCP 窗口](http://7xonij.com5.z0.glb.qiniucdn.com/network/tcp-window.png)
 
 这样的好处是在第一个数据包(1-1000) 发出后，不必等到 ACK 返回就可以立刻发送第二个数据包。可以看出图中的 TCP 窗口大小是 4，所以第四个包发送后就会开始等待，直到第一个包的 ACK 返回。这样窗口可以向后滑动一位，第五个包被发送。
 
@@ -88,7 +88,7 @@ Pipeline 是为了减少不必要的 TCP 连接，但依然存在队头阻塞(HO
 
 所以说 HOL 不仅仅在 HTTP 层存在，在 TCP 层也存在，这也正是 QUIC 协议要解决的问题。回顾 SPDY 是如何解决 HOL 的，没错，多路复用(Multiplex)。QUIC 协议也采用了多路复用技术。
 
-![QUIC 多路复用](http://images.bestswifter.com/1491206971.png)
+![QUIC 多路复用](http://7xonij.com5.z0.glb.qiniucdn.com/1491206971.png)
 
 QUIC 协议基于 UDP 实现，我们知道 UDP 协议只负责发送数据，并不保证数据可达性。这一方面为 QUIC  的多路复用提供了基础，另一方面也要求 QUIC 协议自己保证数据可达性。
 
@@ -166,7 +166,7 @@ TFO 设计了一个 cookie，它在第一次握手时由 server 生成，cookie 
 
 服务端收到 SYN 后会验证 cookie 是否有效，如果无效则会退回到三次握手的步骤，如下图所示:
 
-![回退到普通三次握手](http://images.bestswifter.com/1491536652.png )
+![回退到普通三次握手](http://7xonij.com5.z0.glb.qiniucdn.com/1491536652.png )
 
 同时，为了安全起见，服务端为每个端口记录了一个值 `PendingFastOpenRequests`，用来表示有多少请求利用了 TFO，如果超过预设上限就不再接受。
 
