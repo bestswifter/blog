@@ -32,7 +32,7 @@
 
 dSYM 文件的 UUID 可以通过 `dwarfdump --uuid` 命令获取：
 
-<p class="img-tip" data-str="image.png"><img src='https://sf3-ttcdn-tos.pstatp.com/img/tos-cn-v-0000/92b6d203744a4535a5e9ae3369021202~noop.png' height=42 width=996/></p>
+<p class="img-tip" data-str="image.png"><img src='https://sf3-ttcdn-tos.pstatp.com/img/tos-cn-v-0000/4305629a409746dfb81b9af84df35f46~noop.png' height=40 width=1140/></p>
 
 ### 符号化方式
 
