@@ -72,7 +72,7 @@ Mach-O 文件由三个部分组成，分别是 Header、Load Commands 和 Data�
 
 而 UUID 就是其中一个 Load Command，名字叫 `LC_UUID`。可以通过 MachOViewer 看下其中的结构：
 
-<p class="img-tip" data-str="image.png"><img src='https://sf3-ttcdn-tos.pstatp.com/img/tos-cn-v-0000/5efae84b32b44cb3896549ee8d0af620~noop.png' height=100 width=1140/></p>
+<p class="img-tip" data-str="image.png"><img src='https://sf3-ttcdn-tos.pstatp.com/img/tos-cn-v-0000/e091dabdb28248199530c895adedc27c~noop.png' height=191 width=1140/></p>
 
 可以看到这个 Load Command 的结构：
 
