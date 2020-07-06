@@ -46,5 +46,8 @@ rvm use 2.6.2
 
 以通过 rvm 安装的 ruby 2.6.2 为例，这个可执行的 `gem` 二进制，位于目录 `$HOME/.rvm/rubies/ruby-2.6.2/bin/gem` 下
 
-可以通过 `gem env` 命令来查看
+可以通过 `gem env` 命令来查看更详细的配置：
+
+
+
 
