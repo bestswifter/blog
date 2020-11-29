@@ -1,4 +1,3 @@
-\<script type="text/javascript" src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=default"\>\</script\>
 # 非专业减脂入门指北
 
 ## 前言
@@ -35,7 +34,7 @@
 
 这个公式就是：
 
-$$x=\sqrt{2}$$
+\<img src="http://chart.googleapis.com/chart?cht=tx&chl=\Large%20FatLose=\frac{EnergyIntaked%20-%20EnergyConsumed}{Fat%20%20Energy%20Density}" style="border:none;"\>
 
 ## 个人实践
 
