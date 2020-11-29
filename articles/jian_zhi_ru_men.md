@@ -34,11 +34,11 @@
 
 这个公式就是：
 
-\<img src="http://chart.googleapis.com/chart?cht=tx&chl=\Large%20FatLose=\frac{EnergyIntaked%20-%20EnergyConsumed}{Fat%20%20Energy%20Density}" style="border:none;"\>
-
+![][image-2]
 ## 个人实践
 
 ## 常见问题
 
 
 [image-1]:	../pictures/jianzhi/bmi.jpg
+[image-2]:	http://chart.googleapis.com/chart?cht=tx&chl=%5CLarge%20FatLose=%5Cfrac%7BEnergyIntaked%20-%20EnergyConsumed%7D%7BFat%20%20Energy%20Density%7D
