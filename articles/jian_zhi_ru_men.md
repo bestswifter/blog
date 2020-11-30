@@ -45,6 +45,9 @@
 > 能量消耗不够，违反公式不可能成功。但即使能量消耗足够，注意我上面的用词，也不一定能消耗脂肪。
 
 ### 能量消耗
+![][image-2]
+
+再次强调
 
 ## 个人实践
 
@@ -52,3 +55,4 @@
 
 
 [image-1]:	../pictures/jianzhi/bmi.jpg
+[image-2]:	../pictures/jianzhi/energy.png
