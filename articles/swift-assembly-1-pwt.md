@@ -153,7 +153,7 @@ let p: Drawable = Point(x: 1, y: 2)
 
 
 * 首先看下 [rip + 0x189d] 的值是多少。在执行这行命令时，`rip` 的值是下一行命令的地址，即 `0x1073be88b`，相加后得到 `0x000000010518c128`
-* 由于 Hopper、MachoView 等工具只能显示相对便宜，因此要先减去当前程序在内存中的偏移。可以用 `image list swift-ui-test` 来查看
+* 由于 Hopper、MachoView 等工具只能显示相对偏移，因此要先减去当前程序在内存中的偏移。可以用 `image list swift-ui-test` 来查看
 * 得到结果是 `0x4128`
 
 
